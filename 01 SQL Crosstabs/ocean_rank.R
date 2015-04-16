@@ -1,3 +1,3 @@
 ocean_rank<- data.frame(fromJSON(getURL(URLencode(gsub("\n"," ",'129.152.144.84:5001/rest/native/?query="select direction, length, name, rank() OVER (PARTITION BY direction order by length desc) len_rank from ocean order by 1,2 desc"')),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL',USER='C##cs329e_my3852', PASS='orcl_my3852',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON'),verbose = TRUE)))
 
-ocean_rank %>% tbl_df
+ocean_rank 

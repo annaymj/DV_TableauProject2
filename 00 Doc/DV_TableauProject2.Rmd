@@ -1,10 +1,78 @@
 ## DV_TableauProject2
 ========================================================
 #### Group member: Anna Mengjie Yu (my3852),  Duy Vu (dhv242),  Syed Naqvi (san724)
+In this project, we use the same plastid genome data we used in DV_RProject3. 
+
+The length of a gene determines the number of amino acid this gene encodes. The longer the gene, the more likely or more important function it might have. In the plastid genomes, the gene can be in either forward or reverse direction. We partition the genes by direction, and try to discover the length variation of those genes.
+
+We produced the same crosstabs in both R and Tableau.
+
+*********
+Load packages
+
+```{r}
+source("../01 SQL Crosstabs/project5_loadPackage.R", echo = TRUE)
+```
+
+*********
+**Table 1: Rank**
+*********
+In this table, we created a new column named LEN_RANK, we partition the genes by DIRECTION(forward and reverse). 
+
+
+We can see that in forward direction, rpoC2 and rpoB genes are ranked top 1 and top 2, respectively, in terms of length. rpo genes are ribosome proterin genes are important gens in charge of protein synthesis.
+
+In ther reverse direction, rnl rRNA is the longest. rRNA is ribosome RNA responsible for transcription and translation. It plays a critical part in protein synthesis.
 
 
 ```{r}
-summary(cars)
+source("../01 SQL Crosstabs/ocean_rank.R", echo = TRUE)
 ```
+
+*********
+**Table 2: Max and Difference**
+*********
+In Table 2, we created two new columns. One named Max_LEN showing the maximum gene length in each gene direction category. The second column LenDiff showing the difference of gene length compared to the maximum gene length in each directory category.
+
+From this table, we can see that the gene length in forward direction varies much more (maxDiff 4291) than gene length in reverse direction(maxDiff 2815).
+```{r}
+source("../01 SQL Crosstabs/ocean_diff.R", echo = TRUE)
+```
+
+*********
+**Table 3: Nth Rank**
+*********
+In Table 3, we created a new column named NTH_LENGTH, we showed the 5th longest gene length in each direction category. We can see that in the forward direction category, the 5th longest gene length is 2628. While in the reverse direction category, the 5th longest gene length is 1824.
+
+```{r}
+source("../01 SQL Crosstabs/ocean_Nth.R", echo = TRUE)
+```
+
+*********
+**Table 4: Accumulation Distribution**
+*********
+In this Table, we created a new column named CUME_DIST, which shows the accumulative distribution of each gene in each category. From this table, we can see tRNA (transfer RNA) takes most of the lower cumulative percentage in both forward direction category and reverse category.
+
+```{r}
+source("../01 SQL Crosstabs/ocean_cume.R", echo = TRUE)
+```
+
+*********
+**Tableau** 
+
+**Rank Table**
+In this table, we created a new column rank, partition the data by direction, and order by length in descending order. We generated exactly the same table as in R. In addition, we added the rank filter, where the user can select any range of rank they would like to see.
+
+*********
+**Difference** 
+In the Difference table, we partitioned the data by direction, order by the length of gene in descending order. We generated two new columns MaxLen and Difference Len, showing the difference between the maximum gene length in each category with individual gene.
+
+*********
+**Nth** 
+In the Nth table, we partioned the data by direction, order by the length of gene in descending order. We generated one new column showing the length of the gene in certain rank. We created a parameter Nth, the user can change the Nth from 1 to 5 to see the nth maximum gene length in each direction category.
+
+*********
+**Cume_dist** 
+In the Cume_dist table, we caculated the cumulative distribution of gene length in each direction category. And in teh cumeFig, we visualized the distribution of gene length in different direction category. Different genes category are indicated by different color, and the cumulative sum is also represented by the size of the bar.
 
 

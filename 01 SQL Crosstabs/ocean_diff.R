@@ -1,3 +1,3 @@
 ocean_diff<- data.frame(fromJSON(getURL(URLencode(gsub("\n"," ",'129.152.144.84:5001/rest/native/?query="select direction,length, name, last_value(max_len) OVER (PARTITION BY direction order by length) max_len, last_value(max_len) OVER (PARTITION BY direction order by length) - length len_diff from (select direction, length, name, max(length) OVER (PARTITION BY direction) max_len FROM ocean) order by 1, 2 desc"')),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL',USER='C##cs329e_my3852', PASS='orcl_my3852',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON'),verbose = TRUE)))
 
-ocean_diff %>% tbl_df
+ocean_diff 
